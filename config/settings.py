@@ -128,6 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 REST_FRAMEWORK = {
@@ -138,3 +139,4 @@ REST_FRAMEWORK = {
 
 RAZORPAY_KEY_ID = "rzp_test_Stuf3VVlMaVfVr"
 RAZORPAY_KEY_SECRET = "0DuduuC7pOs3QY5FJ62vNIEo"
+
