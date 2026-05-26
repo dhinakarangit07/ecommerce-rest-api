@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'ecommerce_db',
         'USER': 'root',
         'PASSWORD': 'root_password',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '3306',
     }
 }
@@ -140,3 +140,4 @@ REST_FRAMEWORK = {
 RAZORPAY_KEY_ID = "rzp_test_Stuf3VVlMaVfVr"
 RAZORPAY_KEY_SECRET = "0DuduuC7pOs3QY5FJ62vNIEo"
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
