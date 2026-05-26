@@ -81,13 +81,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ecommerce_db',
         'USER': 'root',
-        'PASSWORD': 'root_password',
-        'HOST': 'db',
+        'PASSWORD': 'root_password',   # your mysql password
+        'HOST': '127.0.0.1',  # NOT db
         'PORT': '3306',
     }
 }
