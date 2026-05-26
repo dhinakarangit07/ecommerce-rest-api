@@ -97,7 +97,7 @@ DATABASES = {
         'NAME': 'ecommerce_db',
         'USER': 'root',
         'PASSWORD': 'root_password',   # your mysql password
-        'HOST': 'db',  
+        'HOST': 'localhost',  
         'PORT': '3306',
     }
 }
