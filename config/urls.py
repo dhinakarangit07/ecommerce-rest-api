@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import home
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -24,6 +25,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home, name='home'),
 
     # User Registration
     path('api/users/', include('users.urls')),
