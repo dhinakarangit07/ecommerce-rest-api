@@ -1,27 +1,37 @@
-from rest_framework import generics, permissions
+from rest_framework import generics
+from django.contrib.auth.models import User
+
 from .models import Order
 from .serializers import OrderSerializer
 
+
+# =========================
+# ORDER APIs
+# =========================
 
 # PLACE ORDER API
 class PlaceOrderAPIView(generics.CreateAPIView):
 
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+
+        user = User.objects.first()
+
+        serializer.save(user=user)
 
 
 # ORDER HISTORY API
 class OrderHistoryAPIView(generics.ListAPIView):
 
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
+
+        user = User.objects.first()
+
+        return Order.objects.filter(user=user)
 
 
 # ORDER DETAILS API
@@ -29,9 +39,11 @@ class OrderDetailAPIView(generics.RetrieveAPIView):
 
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 
+# =========================
+# RAZORPAY PAYMENT APIs
+# =========================
 
 import razorpay
 import hmac
@@ -41,10 +53,12 @@ from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+
 client = razorpay.Client(auth=(
     settings.RAZORPAY_KEY_ID,
     settings.RAZORPAY_KEY_SECRET
 ))
+
 
 class CreatePaymentAPIView(APIView):
 
@@ -64,7 +78,8 @@ class CreatePaymentAPIView(APIView):
             "message": "Payment created",
             "data": order
         })
-    
+
+
 class VerifyPaymentAPIView(APIView):
 
     def post(self, request):

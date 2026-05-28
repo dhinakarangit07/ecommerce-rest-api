@@ -55,11 +55,11 @@ INSTALLED_APPS = [
     'orders',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+ #       'rest_framework_simplejwt.authentication.JWTAuthentication',
+  #  ),
+#}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -146,11 +146,19 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
+
+#REST_FRAMEWORK = {
+  #  'DEFAULT_AUTHENTICATION_CLASSES': (
+  #      'rest_framework_simplejwt.authentication.JWTAuthentication',
+   # )
+#}
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
 }
 
 RAZORPAY_KEY_ID = "rzp_test_Stuf3VVlMaVfVr"
