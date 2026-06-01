@@ -13,9 +13,7 @@ from .models import Order
 @permission_classes([AllowAny])
 def place_order(request):
 
-    user = User.objects.first()
-
-    cart_items = Cart.objects.filter(user=user)
+    cart_items = Cart.objects.all()
 
     if request.method == 'GET':
 
@@ -29,26 +27,9 @@ def place_order(request):
             "total_price": total_price
         })
 
-    # POST
     if not cart_items.exists():
         return Response({
             "message": "Cart is Empty"
         }, status=400)
 
-    total_price = sum(
-        item.product.price * item.quantity
-        for item in cart_items
-    )
-
-    order = Order.objects.create(
-        user=user,
-        total_price=total_price
-    )
-
-    cart_items.delete()
-
-    return Response({
-        "message": "Order Placed Successfully",
-        "order_id": order.id,
-        "total_price": total_price
-    })
+    user = cart_items.first().user
