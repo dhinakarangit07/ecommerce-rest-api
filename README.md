@@ -1,3 +1,4 @@
+-- Active: 1750478594252@@mysql-244ee4bd-dhinakaranece04-638f.b.aivencloud.com@14363
 # Django Ecommerce API
 
 Full Stack Ecommerce Web Application built using Django REST Framework, MySQL, Bootstrap, and JavaScript.
