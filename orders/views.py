@@ -13,21 +13,19 @@ from .models import Order
 @permission_classes([AllowAny])
 def place_order(request):
 
-    user = User.objects.first()
-
-    cart_items = Cart.objects.filter(user=user)
+    cart_items = Cart.objects.all()
 
     if not cart_items.exists():
-
         return Response({
             "message": "Cart is Empty"
         }, status=400)
 
-    total_price = 0
+    user = cart_items.first().user
 
-    for item in cart_items:
-
-        total_price += item.product.price * item.quantity
+    total_price = sum(
+        item.product.price * item.quantity
+        for item in cart_items
+    )
 
     order = Order.objects.create(
         user=user,
