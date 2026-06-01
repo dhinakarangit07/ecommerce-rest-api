@@ -10,14 +10,8 @@ class CartViewSet(viewsets.ModelViewSet):
     serializer_class = CartSerializer
 
     def get_queryset(self):
-
-        user = User.objects.first()
-
-        return Cart.objects.filter(user=user)
+        return Cart.objects.all()
 
     def perform_create(self, serializer):
-
         user = User.objects.first()
-
         serializer.save(user=user)
-

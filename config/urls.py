@@ -9,20 +9,11 @@ from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
-    path('cart/', cart_page),
-    path('login/', login_page),
-    path('checkout/', checkout_page),
-    path('product/<int:id>/', product_detail),
-    # User Registration
+
     path('api/users/', include('users.urls')),
-
     path('api/', include('products.urls')),
-
-    path('api/', include('cart.urls')),
-
+    path('api/', include('cart.urls')),      # <-- change this
     path('api/orders/', include('orders.urls')),
-
 ]
 urlpatterns += static(
     settings.MEDIA_URL,
