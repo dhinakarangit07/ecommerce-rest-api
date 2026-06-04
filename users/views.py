@@ -37,7 +37,10 @@ class LoginAPIView(APIView):
 
         if user:
             return Response({
-                'message': 'Login Successful'
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'message': 'Login Successful'
             })
 
         return Response({
